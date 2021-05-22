@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load sorl_thumbnail %}
+{% load static %}
+{% block title %}type_detail.html{% endblock %}
+
+{% block content %}
+<div class="container">
+<main>
+    <div class="py-5 text-center">
+        <h1>{{object}}</h1>
+        <img class="rounded mx-auto d-block img-fluid" src="{{ object.image.url }}">
+    </div>
+    <p class="lead">{{ object.text }}</p>
+</main>
+    
+    <hr>
+<div class="row g-5">
+
+    <div class="col-6">
+        <h3> 환상의 mbti </h3>
+        <p>{{ object.like }}</p>
+        <a href="{{ object.like.get_absolute_url }}"><img class="img-thumbnail" src="{{ object.like.image.url }}"></a>
+    </div>
+    <div class="col-6">
+        <h3> 환장의 mbti </h3>
+        <p>{{ object.hate }}</p>
+        <a href="{{ object.hate.get_absolute_url }}"><img class="img-thumbnail" src="{{ object.hate.image.url }}"></a>
+    </div>
+</div>
+{% endblock %}

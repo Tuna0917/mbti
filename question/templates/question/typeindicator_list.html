@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load sorl_thumbnail %}
+{% load static %}
+{% block title %}typeindicator.html{% endblock %}
+
+{% block content %}
+
+<div class="container px-4 py-5">
+  <h2 class="pb-2 border-bottom">MBTI List</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5 text-center">
+  {% for x in object_list %}
+{% if forloop.counter0 == 0 or forloop.counter0 == 4 or forloop.counter0 == 8 or forloop.counter0 == 12 %}
+
+{% endif %}
+
+    <div class="col-3">
+      <div class="card">
+        <img src="{{ x.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{x.mbti}}</h5>
+          <p class="card-text">{{x.text|slice:33}}...</p>
+          <a href="{{ x.get_absolute_url }}" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+    </div>
+{% if forloop.counter0 == 3 or forloop.counter0 == 7 or forloop.counter0 == 11 or forloop.counter0 == 15 %}
+
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endblock %}

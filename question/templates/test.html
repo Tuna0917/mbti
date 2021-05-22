@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}test.html{% endblock %}
+
+{% block content %}
+<div>
+    <h1 class="h3 mb-3 fw-normal">
+        {{question}}
+    </h1>
+    <p class="lead">{{question.text}}</p>
+    <br>
+    {% for choice in question.select_set.all %}
+    <div class="d-grid gap-2">
+    <form action="{% url 'test' %}" method="POST">{% csrf_token %}
+        <input type="hidden" name="num" value="{{num}}"> 
+        <input type="hidden" name="base" value="{{mbti}}">
+        <input type="hidden" name="mbti" value="{{choice.indicator}}"> 
+        <button type="submit" class="btn btn-success" name="id" value="{{choice}}">{{choice}}</button>
+    </form>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
